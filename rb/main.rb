@@ -1,3 +1,5 @@
-canvas = `document.getElementById("playing_field")`
-context = `canvas.getContext("2d")`
-`context.fillRect(40, 40, 40, 40)`
+
+require './paddle_class'
+
+`right_paddle = Paddle.new(40, 40)`
+`right_paddle.draw`
