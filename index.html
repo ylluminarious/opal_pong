@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!-- Grab sources for the CSS and jQuery -->
+<head>
+    <title>Pong Game</title>
+    <link rel='stylesheet' href='style.css'/>
+    <script src="http://cdn.opalrb.org/opal/current/opal.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/native.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/opal-parser.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Title text -->
+    <h1 id="header">Pong</h1>
+    <!-- Instructions box -->
+    <center>
+        <div id="instructions">
+            <center>
+                <h3>Instructions</h3>
+                <hr color="black">
+            </center>
+            <ol>
+                <li>Choose which type of game you want to play</li>
+                <li>Press the spacebar to start the game</li>
+                <ul>
+                    <li>Controls for single player mode:</li>
+                    <ul>
+                        <li>W and S</li>
+                        <li>&uarr; and &darr;</li>
+                        <li>A and Z</li>
+                        <li>' (apostrophe) and / (forward slash)</li>
+                    </ul>
+                    <li>Controls for double player mode:</li>
+                        <ul>
+                            <li>The right player uses A and Z</li>
+                            <li>The left player uses ' and /</li>
+                        </ul>
+                </ul>
+                <li>Get 10 points to win. Good luck :)</li>
+            </ol>
+        </div>
+    </center>
+    <center>
+        <!-- Pause button and play button -->
+        <div id="buttons_container">
+            <div id="stats">game mode: <span id="game_mode"></span> | left player score: <span id="left_player_score"></span> | right player score: <span id="right_player_score"></span></div>
+            <div id="pause_button" title="Pause/Resume">
+                &#10074;&#10074;
+            </div>
+            <div id="restart_button" title="Restart the round">
+                &#8634; <span id="restart_text">Restart</span>
+            </div>
+        </div>
+        <!-- The game canvas -->
+        <canvas id="playing_field" width="700" height="500">
+            Your browser does not support the HTML5 Canvas element. You might want to get get a better browser like <a href="https://www.google.com/intl/en-US/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>.
+        </canvas>
+    </center>
+    <script type="text/ruby" src="rb/main.rb"></script>
+</body>
+</html>
