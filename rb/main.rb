@@ -1,9 +1,14 @@
 require_remote "rb/paddle_class.rb"
 require_remote "rb/global_constants.rb"
 require_remote "rb/ball_class.rb"
+
+# Game objects
 ball = Ball.new
-right_paddle = Paddle.new(GameConstants::RIGHT_PADDLE_X_POS, GameConstants::RIGHT_PADDLE_Y_POS)
+right_paddle = Paddle.new(GameConstants::RIGHT_PADDLE_X_POS, GameConstants::RIGHT_PADDLE_Y_POS, ball)
 left_paddle = Paddle.new(GameConstants::LEFT_PADDLE_X_POS, GameConstants::LEFT_PADDLE_Y_POS)
-ball.draw
-right_paddle.draw
-left_paddle.draw
+
+def game_tick
+  puts "test"
+end
+
+game_interval = $$.setInterval(game_tick, GameConstants::MILLESECONDS / GameConstants::FPS)
