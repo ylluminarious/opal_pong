@@ -1,12 +1,15 @@
-puts "test"
+require_remote "rb/global_constants.rb"
 class Paddle
-  def initialize (x_pos, y_pos)
-    @x = x_pos
-    @y = y_pos
+  def initialize (x_pos, y_pos, ball)
+    @x_pos = x_pos
+    @y_pos = y_pos
+    @width = GameConstants::PADDLE_WIDTH
+    @height = GameConstants::PADDLE_HEIGHT
   end
+  
   def draw
-    @context = `document.getElementById("playing_field").getContext("2d")`
-    `@context.fillStyle = "white"`
-    `@context.fillRect(@x, @y, 40, 40)`
+    GameConstants::CONTEXT[:fillStyle] = "white"
+    GameConstants::CONTEXT.fillRect(@x_pos, @y_pos, @width, @height)
   end
+  
 end
