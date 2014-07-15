@@ -16,7 +16,6 @@ class Ball
   end
   
   def draw
-    GameConstants::CONTEXT.fillStyle = "white"
     GameConstants::CONTEXT.beginPath
     GameConstants::CONTEXT.arc(@x_pos, @y_pos, GameConstants::BALL_RADIUS, GameConstants::BALL_START_ANGLE, GameConstants::BALL_END_ANGLE)
     GameConstants::CONTEXT.fill

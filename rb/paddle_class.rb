@@ -1,4 +1,5 @@
 require_remote "rb/global_constants.rb"
+require_remote "rb/global_variables.rb"
 
 class Paddle
   
@@ -6,6 +7,7 @@ class Paddle
   attr_accessor :y_pos
   attr_accessor :width
   attr_accessor :height
+  attr_accessor :score
   
   def initialize (x_pos, y_pos, ball)
     @x_pos = x_pos
@@ -13,11 +15,11 @@ class Paddle
     @width = GameConstants::PADDLE_WIDTH
     @height = GameConstants::PADDLE_HEIGHT
     @velocity = GameConstants::STOPPED
+    @score = $game_variables[:score]
     @ball = ball
   end
   
   def draw
-    GameConstants::CONTEXT[:fillStyle] = "white"
     GameConstants::CONTEXT.fillRect(@x_pos, @y_pos, @width, @height)
   end
   

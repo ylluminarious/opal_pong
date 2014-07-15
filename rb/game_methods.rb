@@ -1,4 +1,5 @@
 require_remote "rb/global_constants.rb"
+require_remote "rb/global_variables.rb"
 
 class GameMethods
   
@@ -10,16 +11,45 @@ class GameMethods
   
   
   def draw
-    GameConstants::CONTEXT[:fillStyle] = "white"
+    GameConstants::CONTEXT[:fillStyle] = $game_variables[:color]
     @ball.draw
     @right_paddle.draw
     @left_paddle.draw
+    if $game_variables[:which_game] == "opening scene" || $game_variables[:which_game] == "victory scene"
+      write_text
+    end
   end
   
   def update
     @ball.update_position(@right_paddle, @left_paddle)
     @right_paddle.update_position
     @left_paddle.update_position
+  end
+  
+  def write_text
+    GameConstants::CONTEXT[:fillStyle] = "white"
+    GameConstants::CONTEXT[:font] = GameConstants::TEXT_FONT
+    GameConstants::CONTEXT.fillText("Press \"1\" for single player",
+    GameConstants::SINGLE_PLAYER_BUTTON_INSTRUCTIONS_X_POS,
+    GameConstants::SINGLE_PLAYER_BUTTON_INSTRUCTIONS_Y_POS
+    )
+    GameConstants::CONTEXT.fillText("Press \"2\" for double player",
+    GameConstants::DOUBLE_PLAYER_BUTTON_INSTRUCTIONS_X_POS,
+    GameConstants::DOUBLE_PLAYER_BUTTON_INSTRUCTIONS_Y_POS
+    )
+    if $game_variables[:which_game] == "victory scene"
+      if @right_paddle.score == GameConstants::POINTS_TO_WIN
+        GameConstants::CONTEXT.fillText("Winner!",
+        GameConstants::RIGHT_WINNER_X_POS,
+        GameConstants::RIGHT_WINNER_Y_POS
+        )
+      elsif @left_paddle.score == GameConstants::POINTS_TO_WIN
+        GameConstants::CONTEXT.fillText("Winner!",
+        GameConstants::LEFT_WINNER_X_POS,
+        GameConstants::LEFT_WINNER_Y_POS
+        )
+      end
+    end
   end
   
   def tick
