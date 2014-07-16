@@ -16,11 +16,9 @@ event = Input.new(ball, right_paddle, left_paddle)
 game_interval = $$.setInterval(Proc.new { game_methods.tick }, GameConstants::MILLESECONDS / GameConstants::FPS)
 
 # Keyboard events will run methods from the Input class
-def key_down (input_event)
+$$.onkeydown = Proc.new do |input_event|
   event.key_down(input_event)
 end
-def key_up (input_event)
+$$.onkeyup = Proc.new do |input_event|
   event.key_up(input_event)
 end
-$$.onkeydown = key_down
-$$.onkeyup = key_up

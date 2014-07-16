@@ -13,7 +13,7 @@ class Input
     # IE code
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
-    key_pressed = input_event.keyCode
+    key_pressed = input_event.key_code
     # Prevent the key's default actions
     input_event.preventDefault
     # Paddle collision constants (these can't go into GameConstants because they use objects unknown to GameConstants: @right_paddle and @left_paddle)
@@ -130,7 +130,7 @@ class Input
     # IE code
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
-    key_released = input_event.keyCode
+    key_released = input_event.key_code
   
     # One-player keyup input
     if $game_variables[:which_game] == "one player"
