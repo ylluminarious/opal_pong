@@ -14,7 +14,7 @@ class Input
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
     event = Native(input_event)
-    key_pressed = event.key_code
+    key_pressed = event.keyCode
     # Prevent the key's default actions
     event.preventDefault
     # Paddle collision constants (these can't go into GameConstants because they use objects unknown to GameConstants: @right_paddle and @left_paddle)
@@ -43,10 +43,10 @@ class Input
     # One-player game keydown input
     if $game_variables[:which_game] == "one player"
       # If the key pressed is the spacebar and the ball isn't moving...
-      if key_pressed == GameConstants::SPACEBAR_CODE && @ball.horizontal_velocity == GameConstants::STOPPED && ball.vertical_velocity == GameConstants::STOPPED
+      if key_pressed == GameConstants::SPACEBAR_CODE && @ball.horizontal_velocity == GameConstants::STOPPED && @ball.vertical_velocity == GameConstants::STOPPED
         # ... make the ball go leftwards and downwards.
         @ball.horizontal_velocity = -GameConstants::BALL_VELOCITY
-        @ball.vertical_velocity = -GameConstants::BALL_VELOCITY
+        @ball.vertical_velocity = GameConstants::BALL_VELOCITY
       end
       
       # If the key pressed is up arrow, w, a, or ' (single quote) and the paddle is not touching the top wall...
@@ -132,7 +132,7 @@ class Input
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
     event = Native(input_event)
-    key_released = event.key_code
+    key_released = event.keyCode
   
     # One-player keyup input
     if $game_variables[:which_game] == "one player"
