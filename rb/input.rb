@@ -16,7 +16,7 @@ class Input
     event = Native(input_event)
     key_pressed = event.key_code
     # Prevent the key's default actions
-    input_event.preventDefault
+    event.preventDefault
     # Paddle collision constants (these can't go into GameConstants because they use objects unknown to GameConstants: @right_paddle and @left_paddle)
     TOP_OF_RIGHT_PADDLE = @right_paddle.y_pos
     BOTTOM_OF_RIGHT_PADDLE = @right_paddle.y_pos + @right_paddle.height
