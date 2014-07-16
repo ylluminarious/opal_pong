@@ -13,7 +13,8 @@ class Input
     # IE code
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
-    key_pressed = input_event.key_code
+    event = Native(input_event)
+    key_pressed = event.key_code
     # Prevent the key's default actions
     input_event.preventDefault
     # Paddle collision constants (these can't go into GameConstants because they use objects unknown to GameConstants: @right_paddle and @left_paddle)
@@ -52,7 +53,7 @@ class Input
       if key_pressed == GameConstants::UP_ARROW_CODE || key_pressed == GameConstants::W_CODE || key_pressed == GameConstants::A_CODE || key_pressed == GameConstants::SINGLE_QUOTE_CODE
         if TOP_OF_RIGHT_PADDLE > GameConstants::TOP_WALL
           # ... make the paddle go upwards.
-          @right_paddle.velocity = -GameConstants.RIGHT_PADDLE_VELOCITY
+          @right_paddle.velocity = -GameConstants::RIGHT_PADDLE_VELOCITY
         end
       end
       
@@ -130,7 +131,8 @@ class Input
     # IE code
     input_event = input_event || $$.event
     # Get the key code of the key that was pressed
-    key_released = input_event.key_code
+    event = Native(input_event)
+    key_released = event.key_code
   
     # One-player keyup input
     if $game_variables[:which_game] == "one player"
@@ -148,7 +150,7 @@ class Input
     end
   
     # Two-player keyup input
-    if GameConstants[:which_game] == "two player"
+    if $game_variables[:which_game] == "two player"
       # If a is released...
       if key_released == GameConstants::A_CODE
         # ... stop the left paddle.
