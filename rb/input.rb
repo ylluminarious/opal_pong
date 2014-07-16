@@ -60,7 +60,7 @@ class Input
       if key_pressed == GameConstants::DOWN_ARROW_CODE || key_pressed == GameConstants::S_CODE || key_pressed == GameConstants::Z_CODE || key_pressed == GameConstants::FORWARD_SLASH_CODE
         if BOTTOM_OF_RIGHT_PADDLE < GameConstants::BOTTOM_WALL
           # ... make the paddle go downwards.
-          right_paddle.velocity = GameConstants::RIGHT_PADDLE_VELOCITY
+          @right_paddle.velocity = GameConstants::RIGHT_PADDLE_VELOCITY
         end
       end
     end
