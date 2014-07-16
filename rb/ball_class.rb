@@ -28,7 +28,7 @@ class Ball
     
     # -------------------- Start of ball collision code --------------------
     
-    # Ball collision constants (these can't go into GameConstants because they use objects unknown to GameConstants, i.e., right_paddle and left_paddle)
+    # Ball collision constants (these can't go into GameConstants because they use objects unknown to GameConstants, i.e., right_paddle and left_paddle, as well as instance variables)
     TOP_OF_BALL = @y_pos - GameConstants::BALL_RADIUS
     BOTTOM_OF_BALL = @y_pos + GameConstants::BALL_RADIUS
     RIGHT_SIDE_OF_BALL = @x_pos + GameConstants::BALL_RADIUS
