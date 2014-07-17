@@ -72,7 +72,7 @@ class Input
       if key_pressed == GameConstants::SPACEBAR_CODE && @ball.horizontal_velocity == GameConstants::STOPPED && @ball.vertical_velocity == GameConstants::STOPPED
         # ... make the ball move leftwards and downwards.
         @ball.horizontal_velocity = -GameConstants::BALL_VELOCITY
-        @ball.vertical_velocity = -GameConstants::BALL_VELOCITY
+        @ball.vertical_velocity = GameConstants::BALL_VELOCITY
       end
     end
     
