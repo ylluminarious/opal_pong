@@ -102,6 +102,7 @@ class Ball
         # ... restart at the center of the field and mark a point for the left paddle.
         @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
         @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
+        left_paddle.score += 1
       end
       
       # When the ball goes past the left paddle...
@@ -109,6 +110,7 @@ class Ball
         # ... restart at the center of the field and mark a point for the right paddle.
         @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
         @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
+        right_paddle.score += 1
       end
     end
   end

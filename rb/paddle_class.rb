@@ -5,14 +5,18 @@ class Paddle
   
   attr_accessor :x_pos
   attr_accessor :y_pos
+  attr_accessor :horizontal_score_pos
+  attr_accessor :vertical_score_pos
   attr_accessor :width
   attr_accessor :height
   attr_accessor :velocity
   attr_accessor :score
   
-  def initialize (x_pos, y_pos, ball)
+  def initialize (x_pos, y_pos, horizontal_score_pos, vertical_score_pos, ball)
     @x_pos = x_pos
     @y_pos = y_pos
+    @horizontal_score_pos = horizontal_score_pos
+    @vertical_score_pos = vertical_score_pos
     @width = GameConstants::PADDLE_WIDTH
     @height = GameConstants::PADDLE_HEIGHT
     @velocity = GameConstants::STOPPED
@@ -22,6 +26,8 @@ class Paddle
   
   def draw
     GameConstants::CONTEXT.fillRect(@x_pos, @y_pos, @width, @height)
+    GameConstants::CONTEXT[:font] = GameConstants::SCORE_FONT
+    GameConstants::CONTEXT.fillText(@score, @horizontal_score_pos, @vertical_score_pos)
   end
   
   # Method to update the paddle's position.
