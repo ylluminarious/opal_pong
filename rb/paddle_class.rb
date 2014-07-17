@@ -44,6 +44,7 @@ class Paddle
       end
     end
     
+    # Method to update the paddle's position when it's an AI.
     def AI_update_position
       # -------------------- Start of AI code --------------------
       
