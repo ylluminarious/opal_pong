@@ -92,26 +92,25 @@ class Ball
         @y_pos = BOTTOM_OF_LEFT_PADDLE + GameConstants::BALL_RADIUS
         @vertical_velocity = -@vertical_velocity
       end
+    end
+    # ******************** End of ball collision code ********************
       
-      # ******************** End of ball collision code ********************
+    # Restart at center when the ball leaves the ball leaves the field and score a point for the paddle that scored.
       
-      # Restart at center when the ball leaves the ball leaves the field and score a point for the paddle that scored.
+    # When the ball goes past the right paddle...
+    if LEFT_SIDE_OF_BALL > GameConstants::RIGHT_WALL
+      # ... restart at the center of the field and mark a point for the left paddle.
+      @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
+      @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
+      left_paddle.score += 1
+    end
       
-      # When the ball goes past the right paddle...
-      if LEFT_SIDE_OF_BALL > GameConstants::RIGHT_WALL
-        # ... restart at the center of the field and mark a point for the left paddle.
-        @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
-        @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
-        left_paddle.score += 1
-      end
-      
-      # When the ball goes past the left paddle...
-      if RIGHT_SIDE_OF_BALL < GameConstants::LEFT_WALL
-        # ... restart at the center of the field and mark a point for the right paddle.
-        @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
-        @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
-        right_paddle.score += 1
-      end
+    # When the ball goes past the left paddle...
+    if RIGHT_SIDE_OF_BALL < GameConstants::LEFT_WALL
+      # ... restart at the center of the field and mark a point for the right paddle.
+      @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
+      @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
+      right_paddle.score += 1
     end
   end
 end
