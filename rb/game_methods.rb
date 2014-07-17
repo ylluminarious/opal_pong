@@ -93,7 +93,6 @@ class GameMethods
     # The play/pause button will toggle between clicks, changing the play symbol to pause symbol (and vice versa) and whether or not the game is paused.
     
     pause_button = Element.find("#pause_button")
-    pause_button.class
     pause_button.on(:click) do
       $$.alert("test")
     end
@@ -105,6 +104,14 @@ class GameMethods
     GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
     update
     draw
+    
+    game_mode = Element.find("#game_mode")
+    right_player_score = Element.find("#right_player_score")
+    left_player_score = Element.find("#left_player_score")
+    game_mode.html($game_variables[:which_game])
+    right_player_score.html(@right_paddle.score)
+    left_player_score.html(@left_paddle.score)
+    
     if $game_variables[:which_game] != "opening scene"
       $game_variables[:color] = "white"
     end
