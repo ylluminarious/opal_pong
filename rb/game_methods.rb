@@ -15,6 +15,17 @@ class GameMethods
     @ball.draw
     @right_paddle.draw
     @left_paddle.draw
+    
+    y_pos = GameConstants::HALFWAY_LINE_Y_POS
+    while y_pos < GameConstants::BOTTOM_WALL
+      GameConstants::CONTEXT.fillRect(GameConstants::HALFWAY_LINE_X_POS,
+      y_pos + GameConstants::HALFWAY_LINE_STEPS / 4,
+      GameConstants::HALFWAY_LINE_WIDTH,
+      GameConstants::HALFWAY_LINE_STEPS / 2
+      )
+      y_pos += GameConstants::HALFWAY_LINE_STEPS
+    end
+    
     if $game_variables[:which_game] == "opening scene" || $game_variables[:which_game] == "victory scene"
       write_text
     end
@@ -76,6 +87,18 @@ class GameMethods
       end
     end
   end
+  
+  # Method for the buttons of the game (uses Opal-jQuery to make them work).
+  def buttons
+    # The play/pause button will toggle between clicks, changing the play symbol to pause symbol (and vice versa) and whether or not the game is paused.
+    
+    pause_button = Element.find("#pause_button")
+    pause_button.class
+    pause_button.on(:click) do
+      $$.alert("test")
+    end
+  end
+    
   
   # The tick method will be called on every tick of the game loop; it will run the steps of the game loop, check the buttons' conditions and update the stats bar.
   def tick
