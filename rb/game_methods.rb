@@ -9,7 +9,7 @@ class GameMethods
     @left_paddle = left_paddle
   end
   
-  
+  # Draws the objects of the game, the text of the victory and opening scenes, and the game's halfway line.
   def draw
     GameConstants::CONTEXT[:fillStyle] = $game_variables[:color]
     @ball.draw
@@ -20,9 +20,11 @@ class GameMethods
     end
   end
   
+  # Updates the positions of the game objects, and does so differently depending on which game scene is current. Also will reset all game objects in the victory scene.
   def update
     @ball.update_position(@right_paddle, @left_paddle)
     @right_paddle.update_position
+    
     if $game_variables[:which_game] == "opening scene"
       @ball.update_position(@right_paddle, @left_paddle)
       @right_paddle.AI_update_position
@@ -48,6 +50,7 @@ class GameMethods
     end
   end
   
+  # Method that writes the instructional text telling you how to pick which game you want. Also writes "Winner!" text in the victory scene.
   def write_text
     GameConstants::CONTEXT[:fillStyle] = "white"
     GameConstants::CONTEXT[:font] = GameConstants::TEXT_FONT
@@ -74,6 +77,7 @@ class GameMethods
     end
   end
   
+  # The tick method will be called on every tick of the game loop; it will run the steps of the game loop, check the buttons' conditions and update the stats bar.
   def tick
     GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
     update
