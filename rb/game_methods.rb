@@ -1,5 +1,6 @@
 require_remote "rb/global_constants.rb"
 require_remote "rb/global_variables.rb"
+require_remote "rb/click_toggle.rb"
 
 class GameMethods
   
@@ -91,10 +92,24 @@ class GameMethods
   # Method for the buttons of the game (uses Opal-jQuery to make them work).
   def buttons
     # The play/pause button will toggle between clicks, changing the play symbol to pause symbol (and vice versa) and whether or not the game is paused.
-    
     pause_button = Element.find("#pause_button")
-    pause_button.on(:click) do
-      $$.alert("test")
+    
+    pause = Proc.new do
+      if $game_variables[:which_game] != "opening scene" && $game_variables[:which_game] != "victory scene"
+        $game_variables[:paused] = true
+        pause_button.html("&#9658;")
+      end
+    end
+    
+    play = Proc.new do
+      if $game_variables[:which_game] != "opening scene" && $game_variables[:which_game] != "victory scene"
+        $game_variables[:paused] = false
+        pause_button.html("&#10074;&#10074;")
+      end
+    end
+    
+    pause_button.click_toggle(pause, play)
+    
     # The restart button will set both players' points to 0 and reset all the game objects' positions, as well as their velocities.
     restart_button = Element.find("#restart_button")
     restart_button.on(:click) do
@@ -121,7 +136,7 @@ class GameMethods
     GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
     update
     draw
-    
+    buttons
     game_mode = Element.find("#game_mode")
     right_player_score = Element.find("#right_player_score")
     left_player_score = Element.find("#left_player_score")
