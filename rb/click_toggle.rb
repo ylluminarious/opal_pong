@@ -5,9 +5,9 @@ class Element
     self['toggleclicked'] = 0
     
     self.on(:click) do |event|
-      element = event.current_element
+      element = event.current_target
       tc = element['toggleclicked'].to_i
-      self.instance_eval(funcs[tc])
+      self.instance_eval(procs[tc])
       element['toggleclicked'] = (tc + 1) % 2
     end
   end
