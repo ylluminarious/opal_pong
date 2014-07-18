@@ -8,6 +8,7 @@ class GameMethods
     @ball = ball
     @right_paddle = right_paddle
     @left_paddle = left_paddle
+    buttons
   end
   
   # Draws the objects of the game, the text of the victory and opening scenes, and the game's halfway line.
@@ -133,16 +134,17 @@ class GameMethods
   
   # The tick method will be called on every tick of the game loop; it will run the steps of the game loop, check the buttons' conditions and update the stats bar.
   def tick
-    GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
-    update
-    draw
-    buttons
-    game_mode = Element.find("#game_mode")
-    right_player_score = Element.find("#right_player_score")
-    left_player_score = Element.find("#left_player_score")
-    game_mode.html($game_variables[:which_game])
-    right_player_score.html(@right_paddle.score)
-    left_player_score.html(@left_paddle.score)
+    if !$game_variables[:paused]
+      GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
+      update
+      draw
+      game_mode = Element.find("#game_mode")
+      right_player_score = Element.find("#right_player_score")
+      left_player_score = Element.find("#left_player_score")
+      game_mode.html($game_variables[:which_game])
+      right_player_score.html(@right_paddle.score)
+      left_player_score.html(@left_paddle.score)
+    end
     
     if $game_variables[:which_game] != "opening scene"
       $game_variables[:color] = "white"
