@@ -1,7 +1,7 @@
 require_remote "rb/ball_class.rb"
 require_remote "rb/paddle_class.rb"
 require_remote "rb/global_constants.rb"
-require_remote "rb/game_methods.rb"
+require_remote "rb/game_class.rb"
 require_remote "rb/input.rb"
 
 # Game objects
@@ -20,8 +20,8 @@ GameConstants::LEFT_VERTICAL_SCORE_POS,
 ball
 )
 
-# New instances of GameMethods and Input.
-game_methods = GameMethods.new(ball, right_paddle, left_paddle)
+# New instances of Game and Input.
+game_methods = Game.new(ball, right_paddle, left_paddle)
 event = Input.new(ball, right_paddle, left_paddle)
 
 # Interval that will make the game loop.
