@@ -1,6 +1,5 @@
 require_remote "rb/global_constants.rb"
 require_remote "rb/global_variables.rb"
-require_remote "rb/game_methods.rb"
 
 class Input
   def initialize (ball, right_paddle, left_paddle)
