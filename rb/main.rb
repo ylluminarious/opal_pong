@@ -1,7 +1,7 @@
-require_remote "rb/ball_class.rb"
-require_remote "rb/paddle_class.rb"
+require_remote "rb/ball.rb"
+require_remote "rb/paddle.rb"
 require_remote "rb/global_constants.rb"
-require_remote "rb/game_class.rb"
+require_remote "rb/game.rb"
 require_remote "rb/input.rb"
 
 # Game objects
