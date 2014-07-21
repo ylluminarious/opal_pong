@@ -2,7 +2,7 @@ require_remote "rb/global_constants.rb"
 require_remote "rb/global_variables.rb"
 require_remote "rb/click_toggle.rb"
 
-class GameMethods
+class Game
   
   def initialize (ball, right_paddle, left_paddle)
     @ball = ball
