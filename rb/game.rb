@@ -39,9 +39,7 @@ class Game
     @right_paddle.update_position
     
     if $game_variables[:which_game] == "opening scene"
-      @ball.update_position(@right_paddle, @left_paddle)
-      @right_paddle.AI_update_position
-      @left_paddle.AI_update_position
+      # do nothing
     elsif $game_variables[:which_game] == "one player"
       @left_paddle.AI_update_position
     elsif $game_variables[:which_game] == "two player"
