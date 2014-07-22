@@ -29,8 +29,8 @@ game_interval = $$.setInterval(Proc.new { game_methods.tick }, GameConstants::MI
 
 # Keyboard events will run methods from the Input class.
 $$.onkeydown = Proc.new do |input_event|
-  event.key_down(input_event)
+    event.key_down(input_event)
 end
 $$.onkeyup = Proc.new do |input_event|
-  event.key_up(input_event)
+    event.key_up(input_event)
 end
