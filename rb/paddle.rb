@@ -32,9 +32,9 @@ class Paddle
   
     # Method to update the paddle's position.
     def update_position
-    
         # If the paddle is not stopped, update position.
         if @ball.horizontal_velocity != GameConstants::STOPPED && @ball.vertical_velocity != GameConstants::STOPPED
+            
             # Update position.
             @y_pos += @velocity / GameConstants::FPS
       
@@ -54,6 +54,7 @@ class Paddle
       
             # If the ball is not stopped, update position and look through the code for the AI.
             if @ball.horizontal_velocity != GameConstants::STOPPED && @ball.vertical_velocity != GameConstants::STOPPED
+                
                 # Update position.
                 @y_pos += @velocity / GameConstants::FPS
         
