@@ -6,9 +6,13 @@ body {
     cursor: default;
     text-align: center;
 }
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+}
 #instructions {
     font-family: Verdana;
-    width: 500px;
     padding-top: 1px;
     padding-bottom: 1px;
     padding-right: 20px;
@@ -16,6 +20,14 @@ body {
     text-align: left;
     background-color: #6699CC;
     border-radius: 5px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+hr {
+    color: black;
+    border: 1px solid;
 }
 #buttons_container {
     background-color: black;
@@ -25,9 +37,12 @@ body {
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-color: white;
-    width: 700px;
     text-align: right;
     border-radius: 5px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;    
 }
 #stats {
     font-family: Courier;
@@ -37,20 +52,17 @@ body {
     padding: 5px;
     cursor: default;
 }
-#pause_button {
+.button {
     cursor: pointer;
     border-style: solid;
     padding: 5px;
     border-width: 1px;
     border-radius: 5px;
+}
+#pause_button {
     display: inline-block;
 }
 #restart_button {
-    cursor: pointer;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    padding: 5px;
     float: right;
     font-size: 14px;
     margin-left: 10px;
