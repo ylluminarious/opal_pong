@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html>
-<!-- Grab sources for the CSS, Opal, and jQuery -->
+<!-- Grab sources for the CSS and jQuery -->
 <head>
     <meta charset="utf-8">
     <title>Pong Game</title>
     <link rel='stylesheet' href='style.css'/>
-    
-    <script src="http://cdn.opalrb.org/opal/master/opal.js"></script>
-    <script src="http://cdn.opalrb.org/opal/master/native.js"></script>
-    <script src="http://cdn.opalrb.org/opal/master/opal-parser.js"></script>
-    <script src="http://cdn.opalrb.org/opal/master/math.js"></script>
-    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://f.cl.ly/items/0P2U2w0a242s221o1Y2K/opal-jquery.js"></script>
-    
-    <script src="http://f.cl.ly/items/3q1S0v1G0c2C212v2N0b/opal-browser.js"></script>
 </head>
+
 <body>
     <!-- Title text -->
     <h1 id="header">Pong</h1>
@@ -27,11 +19,9 @@
         </div>
         <ol>
             <li>Choose which type of game you want to play</li>
-            <li>Press the spacebar to start the game</li>
-            <li>
+            <li>Press the spacebar to start the game
                 <ul>
-                    <li>Controls for single player mode:</li>
-                    <li>
+                    <li>Controls for single player mode:
                         <ul>
                             <li>W and S</li>
                             <li>&uarr; and &darr;</li>
@@ -39,8 +29,7 @@
                             <li>' (apostrophe) and / (forward slash)</li>
                         </ul>
                     </li>
-                    <li>Controls for double player mode:</li>
-                    <li>
+                    <li>Controls for double player mode:
                         <ul>
                             <li>The right player uses A and Z</li>
                             <li>The left player uses ' and /</li>
@@ -68,6 +57,6 @@
             Your browser does not support the HTML5 Canvas element. You might want to get get a better browser like <a href="https://www.google.com/intl/en-US/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>.
         </canvas>
     </div>
-    <script type="text/ruby" src="rb/main.rb"></script>
+    <script type="text/javascript" data-main="js/main.js" src="js/require.js"></script>
 </body>
 </html>
