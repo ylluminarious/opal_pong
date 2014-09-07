@@ -3,7 +3,7 @@ require_remote "rb/global_variables.rb"
 require_remote "rb/click_toggle.rb"
 
 class Game
-  
+    
     def initialize (ball, right_paddle, left_paddle)
         @ball = ball
         @right_paddle = right_paddle
@@ -17,7 +17,7 @@ class Game
         @ball.draw
         @right_paddle.draw
         @left_paddle.draw
-    
+        
         y_pos = GameConstants::HALFWAY_LINE_Y_POS
         while y_pos < GameConstants::BOTTOM_WALL
             GameConstants::CONTEXT.fillRect(GameConstants::HALFWAY_LINE_X_POS,
@@ -27,12 +27,12 @@ class Game
             )
             y_pos += GameConstants::HALFWAY_LINE_STEPS
         end
-    
+        
         if $game_variables[:which_game] == "opening scene" || $game_variables[:which_game] == "victory scene"
             write_text
         end
     end
-  
+    
     # Updates the positions of the game objects, and does so differently depending on which game scene is current. Also will reset all game objects in the victory scene.
     def update
         @ball.update_position(@right_paddle, @left_paddle)
@@ -60,7 +60,7 @@ class Game
             @left_paddle.velocity = GameConstants::STOPPED
         end
     end
-  
+    
     # Method that writes the instructional text telling you how to pick which game you want. Also writes "Winner!" text in the victory scene.
     def write_text
         GameConstants::CONTEXT[:fillStyle] = "white"
@@ -87,28 +87,28 @@ class Game
             end
         end
     end
-  
+    
     # Method for the buttons of the game (uses Opal-jQuery to make them work).
     def buttons
         # The play/pause button will toggle between clicks, changing the play symbol to pause symbol (and vice versa) and whether or not the game is paused.
         pause_button = Element.find("#pause_button")
-    
+        
         pause = Proc.new do
             if $game_variables[:which_game] != "opening scene" && $game_variables[:which_game] != "victory scene"
                 $game_variables[:paused] = true
                 pause_button.html("&#9658;")
             end
         end
-    
+        
         play = Proc.new do
             if $game_variables[:which_game] != "opening scene" && $game_variables[:which_game] != "victory scene"
                 $game_variables[:paused] = false
                 pause_button.html("&#10074;&#10074;")
             end
         end
-    
+        
         pause_button.click_toggle(pause, play)
-    
+        
         # The restart button will set both players' points to 0 and reset all the game objects' positions, as well as their velocities.
         restart_button = Element.find("#restart_button")
         restart_button.on(:click) do
@@ -129,7 +129,7 @@ class Game
         end
     end
     
-  
+    
     # The tick method will be called on every tick of the game loop; it will run the steps of the game loop, check the buttons' conditions and update the stats bar.
     def tick
         if !$game_variables[:paused]

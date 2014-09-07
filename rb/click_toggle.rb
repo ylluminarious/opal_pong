@@ -3,7 +3,7 @@ class Element
     def click_toggle(proc1, proc2)
         procs = [proc1, proc2]
         self['toggleclicked'] = 0
-    
+        
         self.on(:click) do |event|
             element = event.current_target
             tc = element['toggleclicked'].to_i
