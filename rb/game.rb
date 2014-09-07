@@ -10,7 +10,11 @@ class Game
         @left_paddle = left_paddle
         buttons
     end
-  
+    
+    def clear
+        GameConstants::CONTEXT.clearRect(GameConstants::ORIGIN, GameConstants::ORIGIN, GameConstants::RIGHT_WALL, GameConstants::BOTTOM_WALL)
+    end
+    
     # Draws the objects of the game, the text of the victory and opening scenes, and the game's halfway line.
     def draw
         GameConstants::CONTEXT[:fillStyle] = $game_variables[:color]
@@ -144,6 +148,7 @@ class Game
             left_player_score.html(@left_paddle.score)
         end
     
+        clear
         if $game_variables[:which_game] != "opening scene"
             $game_variables[:color] = "white"
         end
