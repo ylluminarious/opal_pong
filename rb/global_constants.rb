@@ -1,4 +1,4 @@
-module GameConstants
+module GlobalConstants
     FIELD = $$[:document].getElementById("playing_field")
     CONTEXT = FIELD.getContext("2d")
     

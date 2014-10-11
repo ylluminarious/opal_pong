@@ -1,4 +1,4 @@
-$game_variables = {
+$global_variables = {
     # Game is not paused when it starts
     :paused => false,
     

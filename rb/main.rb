@@ -7,16 +7,16 @@ require_remote "rb/input.rb"
 # Game objects
 ball = Ball.new
 
-right_paddle = Paddle.new(GameConstants::RIGHT_PADDLE_X_POS,
-GameConstants::RIGHT_PADDLE_Y_POS,
-GameConstants::RIGHT_HORIZONTAL_SCORE_POS,
-GameConstants::RIGHT_VERTICAL_SCORE_POS,
+right_paddle = Paddle.new(GlobalConstants::RIGHT_PADDLE_X_POS,
+GlobalConstants::RIGHT_PADDLE_Y_POS,
+GlobalConstants::RIGHT_HORIZONTAL_SCORE_POS,
+GlobalConstants::RIGHT_VERTICAL_SCORE_POS,
 ball
 )
 
-left_paddle = Paddle.new(GameConstants::LEFT_PADDLE_X_POS, GameConstants::LEFT_PADDLE_Y_POS,
-GameConstants::LEFT_HORIZONTAL_SCORE_POS,
-GameConstants::LEFT_VERTICAL_SCORE_POS,
+left_paddle = Paddle.new(GlobalConstants::LEFT_PADDLE_X_POS, GlobalConstants::LEFT_PADDLE_Y_POS,
+GlobalConstants::LEFT_HORIZONTAL_SCORE_POS,
+GlobalConstants::LEFT_VERTICAL_SCORE_POS,
 ball
 )
 
@@ -25,7 +25,7 @@ game_methods = Game.new(ball, right_paddle, left_paddle)
 event = Input.new(ball, right_paddle, left_paddle)
 
 # Interval that will make the game loop.
-game_interval = $$.setInterval(Proc.new { game_methods.tick }, GameConstants::MILLESECONDS / GameConstants::FPS)
+game_interval = $$.setInterval(Proc.new { game_methods.tick }, GlobalConstants::MILLESECONDS / GlobalConstants::FPS)
 
 # Keyboard events will run methods from the Input class.
 $$.onkeydown = Proc.new do |input_event|

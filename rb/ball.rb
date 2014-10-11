@@ -9,30 +9,30 @@ class Ball
     attr_accessor :vertical_velocity
     
     def initialize
-        @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
-        @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
-        @horizontal_velocity = GameConstants::STOPPED
-        @vertical_velocity = GameConstants::STOPPED
+        @x_pos = GlobalConstants::HORIZONTAL_CENTER_OF_FIELD
+        @y_pos = GlobalConstants::VERTICAL_CENTER_OF_FIELD
+        @horizontal_velocity = GlobalConstants::STOPPED
+        @vertical_velocity = GlobalConstants::STOPPED
     end
     
     def draw
-        GameConstants::CONTEXT.beginPath
-        GameConstants::CONTEXT.arc(@x_pos, @y_pos, GameConstants::BALL_RADIUS, GameConstants::BALL_START_ANGLE, GameConstants::BALL_END_ANGLE)
-        GameConstants::CONTEXT.fill
+        GlobalConstants::CONTEXT.beginPath
+        GlobalConstants::CONTEXT.arc(@x_pos, @y_pos, GlobalConstants::BALL_RADIUS, GlobalConstants::BALL_START_ANGLE, GlobalConstants::BALL_END_ANGLE)
+        GlobalConstants::CONTEXT.fill
     end
     
     def update_position (right_paddle, left_paddle)
         # Update position.
-        @x_pos += @horizontal_velocity / GameConstants::FPS
-        @y_pos += @vertical_velocity / GameConstants::FPS
+        @x_pos += @horizontal_velocity / GlobalConstants::FPS
+        @y_pos += @vertical_velocity / GlobalConstants::FPS
         
         # -------------------- Start of ball collision code --------------------
         
-        # Ball collision constants (these can't go into GameConstants because they use objects unknown to GameConstants, i.e., right_paddle and left_paddle, as well as instance variables)
-        TOP_OF_BALL = @y_pos - GameConstants::BALL_RADIUS
-        BOTTOM_OF_BALL = @y_pos + GameConstants::BALL_RADIUS
-        RIGHT_SIDE_OF_BALL = @x_pos + GameConstants::BALL_RADIUS
-        LEFT_SIDE_OF_BALL = @x_pos - GameConstants::BALL_RADIUS
+        # Ball collision constants (these can't go into GlobalConstants because they use objects unknown to GlobalConstants, i.e., right_paddle and left_paddle, as well as instance variables)
+        TOP_OF_BALL = @y_pos - GlobalConstants::BALL_RADIUS
+        BOTTOM_OF_BALL = @y_pos + GlobalConstants::BALL_RADIUS
+        RIGHT_SIDE_OF_BALL = @x_pos + GlobalConstants::BALL_RADIUS
+        LEFT_SIDE_OF_BALL = @x_pos - GlobalConstants::BALL_RADIUS
         FRONT_SIDE_OF_RIGHT_PADDLE = right_paddle.x_pos
         TOP_OF_RIGHT_PADDLE = right_paddle.y_pos
         BOTTOM_OF_RIGHT_PADDLE = right_paddle.y_pos + right_paddle.height
@@ -41,14 +41,14 @@ class Ball
         BOTTOM_OF_LEFT_PADDLE = left_paddle.y_pos + left_paddle.height
         
         # Top wall collision
-        if TOP_OF_BALL < GameConstants::TOP_WALL
-            @y_pos = GameConstants::TOP_WALL + GameConstants::BALL_RADIUS
+        if TOP_OF_BALL < GlobalConstants::TOP_WALL
+            @y_pos = GlobalConstants::TOP_WALL + GlobalConstants::BALL_RADIUS
             @vertical_velocity = -@vertical_velocity
         end
         
         # Bottom wall collision
-        if BOTTOM_OF_BALL > GameConstants::BOTTOM_WALL
-            @y_pos = GameConstants::BOTTOM_WALL - GameConstants::BALL_RADIUS
+        if BOTTOM_OF_BALL > GlobalConstants::BOTTOM_WALL
+            @y_pos = GlobalConstants::BOTTOM_WALL - GlobalConstants::BALL_RADIUS
             @vertical_velocity = -@vertical_velocity
         end
         
@@ -56,19 +56,19 @@ class Ball
         if RIGHT_SIDE_OF_BALL > FRONT_SIDE_OF_RIGHT_PADDLE
             # Front side collision
             if @y_pos > TOP_OF_RIGHT_PADDLE && @y_pos < BOTTOM_OF_RIGHT_PADDLE
-                @x_pos = FRONT_SIDE_OF_RIGHT_PADDLE - GameConstants::BALL_RADIUS
+                @x_pos = FRONT_SIDE_OF_RIGHT_PADDLE - GlobalConstants::BALL_RADIUS
                 @horizontal_velocity = -@horizontal_velocity
             end
             
             # Top side collision
             if BOTTOM_OF_BALL > TOP_OF_RIGHT_PADDLE && @y_pos < TOP_OF_RIGHT_PADDLE && BOTTOM_OF_BALL < BOTTOM_OF_RIGHT_PADDLE
-                @y_pos = TOP_OF_RIGHT_PADDLE - GameConstants::BALL_RADIUS
+                @y_pos = TOP_OF_RIGHT_PADDLE - GlobalConstants::BALL_RADIUS
                 @vertical_velocity = -@vertical_velocity
             end
             
             # Bottom side collision
             if TOP_OF_BALL < BOTTOM_OF_RIGHT_PADDLE && @y_pos > BOTTOM_OF_RIGHT_PADDLE && TOP_OF_BALL > TOP_OF_RIGHT_PADDLE
-                @y_pos = BOTTOM_OF_RIGHT_PADDLE + GameConstants::BALL_RADIUS
+                @y_pos = BOTTOM_OF_RIGHT_PADDLE + GlobalConstants::BALL_RADIUS
                 @vertical_velocity = -@vertical_velocity
             end
         end
@@ -77,19 +77,19 @@ class Ball
         if LEFT_SIDE_OF_BALL < FRONT_SIDE_OF_LEFT_PADDLE
             # Front side collision
             if @y_pos > TOP_OF_LEFT_PADDLE && @y_pos < BOTTOM_OF_LEFT_PADDLE
-                @x_pos = FRONT_SIDE_OF_LEFT_PADDLE + GameConstants::BALL_RADIUS
+                @x_pos = FRONT_SIDE_OF_LEFT_PADDLE + GlobalConstants::BALL_RADIUS
                 @horizontal_velocity = -@horizontal_velocity
             end
             
             # Top side collision
             if BOTTOM_OF_BALL > TOP_OF_LEFT_PADDLE && @y_pos < TOP_OF_LEFT_PADDLE && BOTTOM_OF_BALL < BOTTOM_OF_LEFT_PADDLE
-                @y_pos = TOP_OF_LEFT_PADDLE - GameConstants::BALL_RADIUS
+                @y_pos = TOP_OF_LEFT_PADDLE - GlobalConstants::BALL_RADIUS
                 @vertical_velocity = -@vertical_velocity
             end
             
             # Bottom side collision
             if TOP_OF_BALL < BOTTOM_OF_LEFT_PADDLE && @y_pos > BOTTOM_OF_LEFT_PADDLE && TOP_OF_BALL > TOP_OF_LEFT_PADDLE
-                @y_pos = BOTTOM_OF_LEFT_PADDLE + GameConstants::BALL_RADIUS
+                @y_pos = BOTTOM_OF_LEFT_PADDLE + GlobalConstants::BALL_RADIUS
                 @vertical_velocity = -@vertical_velocity
             end
         end
@@ -98,19 +98,19 @@ class Ball
         # Restart at center when the ball leaves the ball leaves the field and score a point for the paddle that scored.
         
         # When the ball goes past the right paddle...
-        if LEFT_SIDE_OF_BALL > GameConstants::RIGHT_WALL
+        if LEFT_SIDE_OF_BALL > GlobalConstants::RIGHT_WALL
             # ... restart at the center of the field and mark a point for the left paddle.
-            @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
-            @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
-            left_paddle.score += GameConstants::ONE_POINT
+            @x_pos = GlobalConstants::HORIZONTAL_CENTER_OF_FIELD
+            @y_pos = GlobalConstants::VERTICAL_CENTER_OF_FIELD
+            left_paddle.score += GlobalConstants::ONE_POINT
         end
         
         # When the ball goes past the left paddle...
-        if RIGHT_SIDE_OF_BALL < GameConstants::LEFT_WALL
+        if RIGHT_SIDE_OF_BALL < GlobalConstants::LEFT_WALL
             # ... restart at the center of the field and mark a point for the right paddle.
-            @x_pos = GameConstants::HORIZONTAL_CENTER_OF_FIELD
-            @y_pos = GameConstants::VERTICAL_CENTER_OF_FIELD
-            right_paddle.score += GameConstants::ONE_POINT
+            @x_pos = GlobalConstants::HORIZONTAL_CENTER_OF_FIELD
+            @y_pos = GlobalConstants::VERTICAL_CENTER_OF_FIELD
+            right_paddle.score += GlobalConstants::ONE_POINT
         end
     end
 end
