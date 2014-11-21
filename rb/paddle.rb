@@ -82,6 +82,8 @@ class Paddle
                     @velocity = GlobalConstants::STOPPED
                 end
             end
+            
+            # ******************** End of AI code ********************
         end
     end
 end
