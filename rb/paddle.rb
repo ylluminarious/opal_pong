@@ -1,5 +1,5 @@
-require_remote "rb/global_constants.rb"
-require_remote "rb/global_variables.rb"
+require_relative "global_constants"
+require_relative "global_variables"
 
 class Paddle
     

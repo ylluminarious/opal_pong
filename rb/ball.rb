@@ -1,4 +1,4 @@
-require_remote "rb/global_constants.rb"
+require_relative "global_constants"
 
 class Ball
     
