@@ -17,30 +17,30 @@ class Paddle
         @y_pos = y_pos
         @horizontal_score_pos = horizontal_score_pos
         @vertical_score_pos = vertical_score_pos
-        @width = GlobalConstants::PADDLE_WIDTH
-        @height = GlobalConstants::PADDLE_HEIGHT
-        @velocity = GlobalConstants::STOPPED
+        @width = PADDLE_WIDTH
+        @height = PADDLE_HEIGHT
+        @velocity = STOPPED
         @score = $global_variables[:score]
         @ball = ball
     end
     
     def draw
-        GlobalConstants::CONTEXT.fillRect(@x_pos, @y_pos, @width, @height)
-        GlobalConstants::CONTEXT[:font] = GlobalConstants::SCORE_FONT
-        GlobalConstants::CONTEXT.fillText(@score, @horizontal_score_pos, @vertical_score_pos)
+        CONTEXT.fillRect(@x_pos, @y_pos, @width, @height)
+        CONTEXT[:font] = SCORE_FONT
+        CONTEXT.fillText(@score, @horizontal_score_pos, @vertical_score_pos)
     end
     
     # Method to update the paddle's position.
     def update_position
         # If the paddle is not stopped, update position.
-        if @ball.horizontal_velocity != GlobalConstants::STOPPED && @ball.vertical_velocity != GlobalConstants::STOPPED
+        if @ball.horizontal_velocity != STOPPED && @ball.vertical_velocity != STOPPED
             
             # Update position.
-            @y_pos += @velocity / GlobalConstants::FPS
+            @y_pos += @velocity / FPS
             
             # If the paddle hits the top wall or the bottom wall...
-            if @y_pos < GlobalConstants::TOP_WALL || (@y_pos + @height) > GlobalConstants::BOTTOM_WALL
-                @velocity = GlobalConstants::STOPPED
+            if @y_pos < TOP_WALL || (@y_pos + @height) > BOTTOM_WALL
+                @velocity = STOPPED
             end
         end
         
@@ -50,36 +50,36 @@ class Paddle
             
             # AI constants; these can't go into GlobalConstants because they use instance variables.
             BOTTOM_OF_PADDLE = @y_pos + @height
-            CENTER_OF_PADDLE = @y_pos + @height / GlobalConstants::HALVES
+            CENTER_OF_PADDLE = @y_pos + @height / HALVES
             
             # If the ball is not stopped, update position and look through the code for the AI.
-            if @ball.horizontal_velocity != GlobalConstants::STOPPED && @ball.vertical_velocity != GlobalConstants::STOPPED
+            if @ball.horizontal_velocity != STOPPED && @ball.vertical_velocity != STOPPED
                 
                 # Update position.
-                @y_pos += @velocity / GlobalConstants::FPS
+                @y_pos += @velocity / FPS
                 
                 # If the ball's center is above the paddle's center...
                 if @ball.y_pos < CENTER_OF_PADDLE
                     # ... make the paddle go upwards.
-                    @velocity = -GlobalConstants::LEFT_PADDLE_VELOCITY
+                    @velocity = -LEFT_PADDLE_VELOCITY
                 end
                 
                 # If the ball's center is below the paddle's center...
                 if @ball.y_pos > CENTER_OF_PADDLE
                     # ... make the paddle go downwards.
-                    @velocity = GlobalConstants::LEFT_PADDLE_VELOCITY
+                    @velocity = LEFT_PADDLE_VELOCITY
                 end
                 
                 # If the paddle is touching the top wall and the ball's center is above the paddle's center (so that the paddle will not stay stopped once the ball goes below it)...
-                if @y_pos < GlobalConstants::TOP_WALL && @ball.y_pos < CENTER_OF_PADDLE
+                if @y_pos < TOP_WALL && @ball.y_pos < CENTER_OF_PADDLE
                     # ... stop the paddle.
-                    @velocity = GlobalConstants::STOPPED
+                    @velocity = STOPPED
                 end
                 
                 # If the paddle is touching the bottom wall and the ball's center is above the paddle's center (again, so that the paddle will not stay stopped once the ball goes above it)...
-                if BOTTOM_OF_PADDLE > GlobalConstants::BOTTOM_WALL && @ball.y_pos > CENTER_OF_PADDLE
+                if BOTTOM_OF_PADDLE > BOTTOM_WALL && @ball.y_pos > CENTER_OF_PADDLE
                     # ... stop the paddle.
-                    @velocity = GlobalConstants::STOPPED
+                    @velocity = STOPPED
                 end
             end
             
