@@ -1,6 +1,6 @@
-require_relative "global_constants"
-require_relative "global_variables"
-require_relative "click_toggle"
+require_remote "rb/global_constants.rb"
+require_remote "rb/global_variables.rb"
+require_remote "rb/click_toggle.rb"
 
 class Game
     

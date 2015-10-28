@@ -4,11 +4,11 @@ require 'opal-jquery'
 require 'native'
 require 'math'
 
-require_relative "ball"
-require_relative "paddle"
-require_relative "global_constants"
-require_relative "game"
-require_relative "input"
+require_remote "rb/ball.rb"
+require_remote "rb/paddle.rb"
+require_remote "rb/global_constants.rb"
+require_remote "rb/game.rb"
+require_remote "rb/input.rb"
 
 include GlobalConstants
 
