@@ -99,14 +99,14 @@ class Game
         # The play/pause button will toggle between clicks, changing the play symbol to pause symbol (and vice versa) and whether or not the game is paused.
         pause_button = Element.find("#pause_button")
         
-        pause = Proc.new do
+        pause = proc do
             if $global_variables[:which_game] != "opening scene" && $global_variables[:which_game] != "victory scene"
                 $global_variables[:paused] = true
                 pause_button.html("&#9658;")
             end
         end
         
-        play = Proc.new do
+        play = proc do
             if $global_variables[:which_game] != "opening scene" && $global_variables[:which_game] != "victory scene"
                 $global_variables[:paused] = false
                 pause_button.html("&#10074;&#10074;")
